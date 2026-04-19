@@ -7,3 +7,4 @@ for (let item of arr) {
   console.log(map[item])
 }
 console.log(map)
+
