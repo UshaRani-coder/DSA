@@ -1,3 +1,24 @@
+// Brute force approach (O(n²))
+
+function productExceptSelf(nums) {
+  let answer = [];
+
+  for (let i = 0; i < nums.length; i++) {
+    let product = 1;
+    for (let j = 0; j < nums.length; j++) {
+      if (i != j) {
+        product *= nums[j];
+      }
+    }
+    answer.push(product);
+  }
+
+  return answer;
+}
+console.log(productExceptSelf([1,2,3,4]));
+
+// Optimal SOlution (O(n))
+
 var productExceptSelf = function(nums) {
     let n = nums.length;
 
@@ -38,3 +59,20 @@ var productExceptSelf = function(nums) {
 
     return answer;
 };
+
+//  Re-solving
+function productExceptSelf(nums) {
+  let answer = [];
+  let prefixProduct = 1;
+  for (let i = 0; i < nums.length; i++) {
+      answer[i]= prefixProduct;
+      prefixProduct *= nums[i];
+  }
+  let suffixProduct = 1;
+  for (let i = nums.length - 1; i >= 0; i--) {
+    answer[i] *= suffixProduct;
+    suffixProduct *= nums[i];
+  }
+  return answer;
+}
+console.log(productExceptSelf([1, 2, 3, 4]));
